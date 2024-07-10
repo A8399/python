@@ -17,7 +17,7 @@ while True:
     if check_process_running(process_name):
         print("runing")
     else:
-        print("runing")
-        subprocess.Popen(f"cd /hive/aleo && {aleo_miner_path} {miner_code}" , shell=True)
+        print("no")
+        subprocess.Popen("cd /hive/aleo && {} {}".format(aleo_miner_path , miner_code) , shell=True)
 
     time.sleep(600)
