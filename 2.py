@@ -34,7 +34,7 @@ print(output_str)
 text = output_str
 
 # 提取 CPU 名称
-cpu_name = text.split("_")[0].split("-")[1]
+cpu_name = text.split("_")[0].split("-")[3]
 
 # 提取 GPU 名称和硬盘剩余容量
 gpu_disk_info = text.split("_")[1:]
