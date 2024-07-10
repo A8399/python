@@ -15,7 +15,7 @@ gpu_names = []
 
 for i in range(gpu_count):
     handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-    name = pynvml.nvmlDeviceGetName(handle)
+    name = pynvml.nvmlDeviceGetName(handle).decode()
     gpu_names.append(name)
 
 # 清理 NVIDIA 管理库
@@ -25,13 +25,8 @@ pynvml.nvmlShutdown()
 disk_usage = psutil.disk_usage('/')
 disk_free = disk_usage.free // (2**30)
 
-# 打印 CPU 名称
-print("CPU 名称:", cpu_name)
+# 构建输出字符串
+output_str = "{}_{}_{}_{}".format(cpu_name.replace(" ", "-"), "_".join(gpu_names), disk_free)
 
-# 打印 GPU 数量和名称
-print("GPU 数量:", gpu_count)
-for i, gpu_name in enumerate(gpu_names):
-    print("GPU", i, "名称:", gpu_name)
-
-# 打印硬盘剩余容量
-print("硬盘剩余容量:", disk_free, "GB")
+# 打印输出字符串
+print(output_str)
