@@ -15,7 +15,7 @@ gpu_names = []
 
 for i in range(gpu_count):
     handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-    name = pynvml.nvmlDeviceGetName(handle).decode()
+    name = pynvml.nvmlDeviceGetName(handle)
     gpu_name = "_".join(name.replace(" ", "_").split("_")[-3:])
     gpu_names.append(gpu_name)
 
