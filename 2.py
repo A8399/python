@@ -2,14 +2,14 @@ import cpuinfo
 import pynvml
 import psutil
 
-# 获取 CPU 信息
+# Get CPU information
 cpu_info = cpuinfo.get_cpu_info()
 cpu_name = "_".join(cpu_info['brand_raw'].replace(" ", "_").split("_")[2:4])
 
-# 初始化 NVIDIA 管理库
+# Initialize NVIDIA management library
 pynvml.nvmlInit()
 
-# 获取 GPU 数量和名称
+# Get GPU count and names
 gpu_count = pynvml.nvmlDeviceGetCount()
 gpu_names = []
 
@@ -19,15 +19,19 @@ for i in range(gpu_count):
     gpu_name = "_".join(name.replace(" ", "_").split("_")[-2:])
     gpu_names.append(gpu_name)
 
-# 清理 NVIDIA 管理库
+# Clean up NVIDIA management library
 pynvml.nvmlShutdown()
 
-# 获取硬盘剩余容量
+# Get available disk space
 disk_usage = psutil.disk_usage('/')
 disk_free = disk_usage.free // (2 ** 30)
 
-# 连接 CPU、GPU 和硬盘信息
+# Combine CPU, GPU, and disk information
 output = "_".join([*gpu_names, str(disk_free)])
 
-# 打印输出
+# Save the output to a file
+with open("info.txt", "w") as file:
+    file.write(output)
+
+# Print the output
 print(output)
