@@ -15,7 +15,7 @@ gpu_names = []
 
 for i in range(gpu_count):
     handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-    name = pynvml.nvmlDeviceGetName(handle).decode()
+    name = pynvml.nvmlDeviceGetName(handle)
     gpu_names.append(name)
 
 # 清理 NVIDIA 管理库
@@ -26,7 +26,9 @@ disk_usage = psutil.disk_usage('/')
 disk_free = disk_usage.free // (2**30)
 
 # 构建输出字符串
-output_str = "{}_{}_{}".format(cpu_name.split()[1].replace("-", ""), "_".join(gpu_names), disk_free)
+cpu_model = cpu_name.split()[2].replace("-", "")
+gpu_name = gpu_names[0].decode().replace(" ", "-")
+output_str = "{}_{}_{}".format(cpu_model, gpu_name, disk_free)
 
 # 打印输出字符串
 print(output_str)
