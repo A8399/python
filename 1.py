@@ -24,7 +24,7 @@ while True:
     else:
         print(f"进程 {process_name} 未在运行. 启动中...")
         # 切换到aleo-miner程序所在的文件夹并启动aleo-miner
-        subprocess.Popen(f"cd /root/aleo/aleo && {aleo_miner_path} {miner_code}" , shell=True)
+        subprocess.Popen(f"cd /root/aleo && {aleo_miner_path} {miner_code}" , shell=True)
 
     # 暂停10分钟
     time.sleep(600)
