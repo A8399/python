@@ -14,9 +14,9 @@ def check_process_running(process_name):
 # 要检查的进程名称
 process_name = "aleo-miner"
 # aleo-miner程序路径
-aleo_miner_path = "/aleo/aleo.sh"
+aleo_miner_path = "~/aleo/aleo.sh"
 # 指定的代码
-miner_code = "stratum+tcp://aleo-asia.f2pool.com:4400 rukool88.8888"
+miner_code = "stratum+tcp://aleo-asia.f2pool.com:4400 rukool88.1999999"
 
 while True:
     if check_process_running(process_name):
