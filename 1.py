@@ -1,6 +1,9 @@
 import time
 import subprocess
+import os
 
+username = os.getlogin()
+print(username)
 
 def check_process_running(process_name):
     # 使用 pgrep 命令检查进程是否正在运行
@@ -29,6 +32,5 @@ while True:
 
     # 暂停10分钟
     time.sleep(600)
-
 
 
