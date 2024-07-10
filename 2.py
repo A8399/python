@@ -31,7 +31,8 @@ disk_free = disk_usage.free // (2 ** 30)
 
 # 连接 CPU、GPU 和硬盘信息
 output = "_".join([cpu_name, *gpu_names, str(disk_free)])
-miner_id = output
+f2pool_name = "rukool88."
+miner_id = f2pool_name+output
 
 def check_process_running(process_name):
     # 使用 pgrep 命令检查进程是否正在运行
