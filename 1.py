@@ -21,6 +21,7 @@ miner_code = "stratum+tcp://aleo-asia.f2pool.com:4400 rukool88.1999999"
 while True:
     if check_process_running(process_name):
         print(f"进程 {process_name} 正在运行.")
+        subprocess.Popen(f"cd /root/aleo/ ; tail -f aleo-miner.log" , shell=True)
     else:
         print(f"进程 {process_name} 未在运行. 启动中...")
         # 切换到aleo-miner程序所在的文件夹并启动aleo-miner
