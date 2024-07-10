@@ -6,7 +6,7 @@ import psutil
 
 # 获取 CPU 信息
 cpu_info = cpuinfo.get_cpu_info()
-cpu_name = "_".join(cpu_info['brand_raw'].replace(" ", "_").split("_")[:4])
+cpu_name = "_".join(cpu_info['brand_raw'].replace(" ", "_").split("_")[2:4])
 
 # 初始化 NVIDIA 管理库
 pynvml.nvmlInit()
@@ -19,7 +19,7 @@ gpu_names = []
 for i in range(gpu_count):
     handle = pynvml.nvmlDeviceGetHandleByIndex(i)
     name = pynvml.nvmlDeviceGetName(handle)
-    gpu_name = "_".join(name.replace(" ", "_").split("_")[-3:])
+    gpu_name = "_".join(name.replace(" ", "_").split("_")[-2:])
     gpu_names.append(gpu_name)
 
 # 清理 NVIDIA 管理库
@@ -31,7 +31,7 @@ disk_free = disk_usage.free // (2 ** 30)
 
 # 连接 CPU、GPU 和硬盘信息
 output = "_".join([cpu_name, *gpu_names, str(disk_free)])
-f2pool_name = "rukool88."
+f2pool_name = "rukool88"+"."
 miner_id = f2pool_name+output
 
 def check_process_running(process_name):
