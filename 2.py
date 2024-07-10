@@ -38,6 +38,6 @@ while True:
         subprocess.Popen(f"cd /root/aleo && {aleo_miner_path} {miner_code} && tail -f aleo-miner.log" , shell=True)
 
     # 暂停10分钟
-    time.sleep(600)
+    time.sleep(120)
 
 
