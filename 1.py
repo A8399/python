@@ -9,6 +9,6 @@ def check_process_running(process_name):
 process_name = "aleo-miner"
 
 if check_process_running(process_name):
-    print(f"进程 {process_name} 正在运行.")
+    print("runing")
 else:
-    print(f"进程 {process_name} 未在运行.")
+    print("no")
