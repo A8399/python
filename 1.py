@@ -27,7 +27,8 @@ disk_usage = psutil.disk_usage('/')
 disk_free = disk_usage.free // (2 ** 30)
 
 # Combine CPU, GPU, and disk information
-output = "_".join([*gpu_names, str(disk_free)])
+output_list = gpu_names + [str(disk_free)]
+output = "_".join(output_list)
 
 # Save the output to a file
 with open("info.txt", "w") as file:
