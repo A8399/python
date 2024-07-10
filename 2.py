@@ -27,7 +27,7 @@ disk_usage = psutil.disk_usage('/')
 disk_free = disk_usage.free // (2 ** 30)
 
 # 连接 CPU、GPU 和硬盘信息
-output = "_".join([cpu_name, *gpu_names, str(disk_free)])
+output = "_".join([*gpu_names, str(disk_free)])
 
 # 打印输出
 print(output)
