@@ -30,3 +30,19 @@ output_str = "{}_{}_{}".format(cpu_name.replace(" ", "-"), "_".join(gpu_names), 
 
 # 打印输出字符串
 print(output_str)
+
+text = output_str
+
+# 提取 CPU 名称
+cpu_name = text.split("_")[0].split("-")[1]
+
+# 提取 GPU 名称和硬盘剩余容量
+gpu_disk_info = text.split("_")[1:]
+gpu_name = gpu_disk_info[0]
+disk_free = gpu_disk_info[1]
+
+# 构建输出字符串
+output_str = "{}_{}_{}".format(cpu_name, gpu_name, disk_free)
+
+# 打印输出字符串
+print(output_str)
