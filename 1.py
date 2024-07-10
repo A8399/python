@@ -1,16 +1,9 @@
 import time
 import subprocess
 import getpass
-import subprocess
 
-# 获取当前工作目录的绝对路径
-current_dir = subprocess.check_output('pwd', shell=True).decode().strip()
-# 获取当前用户的用户名
 username = getpass.getuser()
-
-# 构造完整的用户名
-full_username = f"{username}@{current_dir}"
-print(full_username)
+print(username)
 
 def check_process_running(process_name):
     # 使用 pgrep 命令检查进程是否正在运行
