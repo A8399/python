@@ -15,8 +15,9 @@ gpu_names = []
 
 for i in range(gpu_count):
     handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-    name = pynvml.nvmlDeviceGetName(handle).decode()
-    gpu_names.append(name.replace(" ", "_"))
+    name = pynvml.nvmlDeviceGetName(handle)
+    gpu_name = name.replace(" ", "_")
+    gpu_names.append(gpu_name)
 
 # 清理 NVIDIA 管理库
 pynvml.nvmlShutdown()
