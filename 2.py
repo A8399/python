@@ -41,10 +41,9 @@ gpu_disk_info = text.split("_")[1:]
 gpu_name = gpu_disk_info[0]
 disk_free = gpu_disk_info[1]
 
-cpu = cpu_name.split("-")[2]
 gpu = gpu_name.split(" ")[-1]
 # 构建输出字符串
-output_str = "{}_{}_{}".format(cpu, gpu, disk_free)
+output_str = "{}_{}_{}".format(cpu_name, gpu, disk_free)
 
 # 打印输出字符串
 print(output_str)
