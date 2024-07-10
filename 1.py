@@ -21,7 +21,7 @@ while True:
         print(f"进程 {process_name} 正在运行.")
     else:
         print(f"进程 {process_name} 未在运行. 启动中...")
-        # 切换到aleo-miner程序所在的文件夹
+        # 切换到aleo-miner程序所在的文件夹并启动aleo-miner
         subprocess.Popen(f"cd /hive/aleo && {aleo_miner_path} {miner_code}" , shell=True)
 
     # 暂停10分钟
