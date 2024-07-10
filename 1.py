@@ -3,10 +3,12 @@ import subprocess
 
 
 def check_process_running(process_name):
-    for process in psutil.process_iter(['name']):
-        if process.info['name'] == process_name:
-            return True
-    return False
+    # 使用 pgrep 命令检查进程是否正在运行
+    try:
+        subprocess.check_output(f"pgrep {process_name}" , shell=True)
+        return True
+    except subprocess.CalledProcessError:
+        return False
 
 
 # 要检查的进程名称
