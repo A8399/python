@@ -1,17 +1,19 @@
 import time
 import subprocess
+import psutil
 
 # 检查进程是否在运行
 def check_process_running(process_name):
-    try:
-        subprocess.check_output(f"pgrep {process_name}", shell=True)
-        return True
-    except subprocess.CalledProcessError:
-        return False
+    for process in psutil.process_iter(['name']):
+        if process.info['name'] == process_name:
+            return True
+    return False
 
 # 关闭进程
 def stop_process(process_name):
-    subprocess.Popen(f"pkill {process_name}", shell=True)
+    for process in psutil.process_iter(['name']):
+        if process.info['name'] == process_name:
+            process.kill()
 
 # 启动进程
 def start_process(command):
@@ -50,10 +52,6 @@ while True:
         start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
         print(f"{process_name} 进程已启动")
 
-    # 等待指定的时间间隔
-    print(f"等待 {interval} 秒...")
-    time.sleep(interval)
-
     # 检查进程是否已重新启动
     if check_process_running(process_name):
         print(f"{process_name} 进程已重新启动")
@@ -66,3 +64,7 @@ while True:
         print(f"重新启动 {process_name} 进程...")
         start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
         print(f"{process_name} 进程已重新启动")
+
+    # 等待指定的时间间隔
+    print(f"等待 {interval} 秒...")
+    time.sleep(interval)
