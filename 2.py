@@ -16,7 +16,7 @@ def check_process_running(process_name):
 
 
 process_name = "aleo-miner"
-with open("root/info.txt", "r") as file:
+with open("/root/info.txt", "r") as file:
     info_text = file.read()
 output = info_text
 aleo_miner_path = "/root/aleo/aleo.sh"
