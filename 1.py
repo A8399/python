@@ -47,7 +47,7 @@ while True:
 
         # 启动进程
         print(f"启动 {process_name} 进程...")
-        start_process(f"cd /root/aleo && {aleo_miner_path} {miner_code} && tail -f aleo-miner.log")
+        start_process(f"cd /root/aleo; {aleo_miner_path} {miner_code} & tail -f aleo-miner.log")
         print(f"{process_name} 进程已启动")
 
     # 等待指定的时间间隔
@@ -64,5 +64,5 @@ while True:
 
         # 重新启动进程
         print(f"重新启动 {process_name} 进程...")
-        start_process(f"cd /root/aleo && {aleo_miner_path} {miner_code} && tail -f aleo-miner.log")
+        start_process(f"cd /root/aleo; {aleo_miner_path} {miner_code} & tail -f aleo-miner.log")
         print(f"{process_name} 进程已重新启动")
