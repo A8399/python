@@ -29,39 +29,27 @@ process_name = "aleo-miner"
 aleo_miner_path = "/root/aleo/aleo.sh"
 miner_code = "stratum+tcp://aleo-asia.f2pool.com:4400 " + miner_id
 
-# 设定定时关闭和重新打开的时间间隔（单位：秒）
-interval = 3600  # 一小时
-restart_delay = 30  # 重新启动延迟时间（单位：秒）
-startup_delay = 10  # 启动延迟时间（单位：秒）
+# 设定定时重新启动的时间间隔（单位：秒）
+restart_interval = 7200  # 两小时
 
 while True:
-    if check_process_running(process_name):
-        print(f"{process_name} 正在运行，关闭进程...")
-        stop_process(process_name)
-        time.sleep(10)  # 等待一段时间确保进程关闭完全
-        print(f"{process_name} 进程已关闭")
-    else:
-        print(f"{process_name} 进程未运行")
-
-        # 等待启动延迟时间
-        print(f"等待 {startup_delay} 秒后启动 {process_name} 进程...")
-        time.sleep(startup_delay)
-
-        # 启动进程
-        print(f"启动 {process_name} 进程...")
+    if not check_process_running(process_name):
+        print(f"{process_name} 进程未运行，启动进程...")
         start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
         print(f"{process_name} 进程已启动")
+    else:
+        print(f"{process_name} 进程正在运行")
 
-        # 等待重新启动延迟时间
-        print(f"等待 {restart_delay} 秒后重新启动 {process_name} 进程...")
-        time.sleep(restart_delay)
+    # 等待重新启动的时间间隔
+    print(f"等待 {restart_interval} 秒后重新启动 {process_name} 进程...")
+    time.sleep(restart_interval)
 
-        # 检查进程是否已重新启动
-        if check_process_running(process_name):
-            print(f"{process_name} 进程已重新启动")
-        else:
-            print(f"{process_name} 进程未能重新启动")
+    # 关闭进程
+    print(f"关闭 {process_name} 进程...")
+    stop_process(process_name)
+    time.sleep(10)  # 等待一段时间确保进程关闭完全
 
-    # 等待指定的时间间隔
-    print(f"等待 {interval} 秒...")
-    time.sleep(interval)
+    # 启动进程
+    print(f"重新启动 {process_name} 进程...")
+    start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
+    print(f"{process_name} 进程已重新启动")
