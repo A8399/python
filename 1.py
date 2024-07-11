@@ -30,7 +30,7 @@ miner_code = "stratum+tcp://aleo-asia.f2pool.com:4400 " + miner_id
 # 设定定时关闭和重新打开的时间间隔（单位：秒）
 interval = 3600  # 一小时
 restart_delay = 120  # 重新启动延迟时间（单位：秒）
-startup_delay = 30  # 启动延迟时间（单位：秒）
+startup_delay = 10  # 启动延迟时间（单位：秒）
 
 while True:
     if check_process_running(process_name):
@@ -47,7 +47,7 @@ while True:
 
         # 启动进程
         print(f"启动 {process_name} 进程...")
-        start_process(f"cd /root/aleo; {aleo_miner_path} {miner_code} & tail -f aleo-miner.log")
+        start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
         print(f"{process_name} 进程已启动")
 
     # 等待指定的时间间隔
@@ -64,5 +64,5 @@ while True:
 
         # 重新启动进程
         print(f"重新启动 {process_name} 进程...")
-        start_process(f"cd /root/aleo; {aleo_miner_path} {miner_code} & tail -f aleo-miner.log")
+        start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
         print(f"{process_name} 进程已重新启动")
