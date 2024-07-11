@@ -52,19 +52,6 @@ while True:
         start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
         print(f"{process_name} 进程已启动")
 
-    # 检查进程是否已重新启动
-    if check_process_running(process_name):
-        print(f"{process_name} 进程已重新启动")
-    else:
-        # 等待重新启动延迟时间
-        print(f"等待 {restart_delay} 秒后重新启动 {process_name} 进程...")
-        time.sleep(restart_delay)
-
-        # 重新启动进程
-        print(f"重新启动 {process_name} 进程...")
-        start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
-        print(f"{process_name} 进程已重新启动")
-
     # 等待指定的时间间隔
     print(f"等待 {interval} 秒...")
     time.sleep(interval)
