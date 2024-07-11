@@ -17,7 +17,7 @@ def stop_process(process_name):
 
 # 启动进程
 def start_process(command):
-    subprocess.Popen(command, shell=True)
+    subprocess.Popen(command, shell=True).wait()
 
 # 配置参数
 with open("/root/info.txt", "r") as file:
@@ -51,6 +51,16 @@ while True:
         print(f"启动 {process_name} 进程...")
         start_process(f"cd /root/aleo && nohup {aleo_miner_path} {miner_code} > aleo-miner.log 2>&1 &")
         print(f"{process_name} 进程已启动")
+
+        # 等待重新启动延迟时间
+        print(f"等待 {restart_delay} 秒后重新启动 {process_name} 进程...")
+        time.sleep(restart_delay)
+
+        # 检查进程是否已重新启动
+        if check_process_running(process_name):
+            print(f"{process_name} 进程已重新启动")
+        else:
+            print(f"{process_name} 进程未能重新启动")
 
     # 等待指定的时间间隔
     print(f"等待 {interval} 秒...")
