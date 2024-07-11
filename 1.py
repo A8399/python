@@ -29,7 +29,7 @@ miner_code = "stratum+tcp://aleo-asia.f2pool.com:4400 " + miner_id
 
 # 设定定时关闭和重新打开的时间间隔（单位：秒）
 interval = 3600  # 一小时
-restart_delay = 120  # 重新启动延迟时间（单位：秒）
+restart_delay = 30  # 重新启动延迟时间（单位：秒）
 startup_delay = 10  # 启动延迟时间（单位：秒）
 
 while True:
